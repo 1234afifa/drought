@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IIT Tirupati GeoJSON Data</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+            flex-direction: column;
+            background-color: rgb(245, 208, 154);
+        }
+
+        header {
+            background-color: #f59e6c;
+            padding: 1px 0px;
+            text-align: left;
+            box-shadow: 0 2px 4px rgba(248, 163, 6, 0.1);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            font-weight: bold; /* Make header text bold */
+            display: flex;
+            align-items: center; /* Align items in the center vertically */
+        }
+
+        #logo {
+            margin-left: 20px; /* Adjust the margin as needed */
+        }
+
+        #logo img {
+            height: 40px; /* Adjust the logo size as needed */
+        }
+
+        #header-title {
+            flex-grow: 1;
+            text-align: center;
+            margin-right: 100px; /* Adjust the margin to balance the title */
+        }
+
+        #content {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            margin-top: 60px;
+        }
+
+        #side-container {
+            display: flex;
+            flex-direction: column;
+            width: 60%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        #selector-container {
+            margin-bottom: 20px;
+        }
+
+        select {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        #table-container {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #0c0c0c;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f16a10;
+            font-weight: bold; /* Make table header cells bold */
+        }
+
+        #chart-container {
+            display: flex;
+            width: 1500px;
+            margin-top: 20px;
+        }
+
+        #crop-bar-chart-container {
+            width: 900px;
+            height: 400px;
+        }
+
+        #image-container {
+            width: 40%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        #image-container img {
+            width: 100%;
+            height: auto;
+        }
+
+        footer {
+            width: 100%;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 5px 0; /* Adjust padding to reduce vertical space */
+            font-size: 1em; /* Adjust font size to make text smaller */
+            color: yellow;
+            z-index: 1000; /* Ensure footer is above content */
+        }
+
+        .bottom-message {
+            width: 100%;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 5px 0;
+            font-size: 1.2em;
+            color: yellow;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .bottom-message::before {
+            content: "\261E"; /* Unicode right pointing index symbol */
+            margin-right: 10px;
+            color: red;
+            font-size: 3.5em; /* Increase the font size */
+        }
+
+        .bottom-message a {
+            color: red;
+            text-decoration: underline;
+            margin-left: 10px;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="logo">
+            <a href="index.html"><img src="https://cdn-icons-png.flaticon.com/512/2563/2563386.png" alt="Logo"></a>
+        </div>
+        <div id="header-title">
+            <h1>DROUGHTS IN INDIA</h1>
+        </div>
+        <div class="navbar">
+            <a href="about.html">About</a>
+            <a href="https://iittnif.maps.arcgis.com/apps/dashboards/c9cc21eb1d0c4f63b8211e38d81b1156">Dashboard</a>
+            <a href="data.html">Data</a>
+            <a href="feedback.html">Feedback</a>
+            <a href="contact.html">Contact</a>
+            <div class="dropdown">
+                <a class="dropbtn" href="#">official websites</a>
+                <div class="dropdown-content">
+                    <a href="https://indiadroughtmonitor.in/">Drought Monitor</a>
+                    <a href="https://agriwelfare.gov.in/en/Drought">Drought Management Overview</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="content">
+        <div id="side-container">
+            <div id="selector-container">
+                <select id="company-selector">
+                    <option value="">All States</option>
+                </select>
+            </div>
+            <div id="table-container">
+                <table id="details-table">
+                    <thead>
+                        <tr>
+                            <th>Field</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dynamic rows will be added here -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="chart-container">
+                <div id="crop-bar-chart-container">
+                    <canvas id="crop-bar-chart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div id="image-container">
+            <img src="map.jpg" alt="Map of droughts in India">
+        </div>
+    </div>
+
+    <footer>
+        <div class="bottom-message">
+            <p>To download the data please login <a href="https://drought-detect.streamlit.app/">click here</a></p>
+        </div>
+    </footer>
+
+    <script>
+        fetch('indian_states_drought.geojson')
+            .then(response => response.json())
+            .then(data => {
+                console.log('GeoJSON Data:', data);
+
+                // Populate the company selector
+                var companySelector = document.getElementById('company-selector');
+                var states = new Set(data.features.map(feature => feature.properties.State));
+                states.forEach(state => {
+                    var option = document.createElement('option');
+                    option.value = state;
+                    option.text = state;
+                    companySelector.appendChild(option);
+                });
+
+                companySelector.addEventListener('change', function () {
+                    var selectedState = this.value;
+                    if (selectedState === "") {
+                        // Show all states
+                        updateTable(null);
+                    } else {
+                        var selectedFeature = data.features.find(feature => feature.properties.State === selectedState);
+                        if (selectedFeature) {
+                            console.log('Selected Feature:', selectedFeature);
+                            console.log('Selected Feature Properties:', selectedFeature.properties);
+                            updateTable(selectedFeature.properties);
+                        } else {
+                            updateTable({});
+                        }
+                    }
+                });
+
+                function updateTable(properties) {
+                    var tableBody = document.getElementById('details-table').getElementsByTagName('tbody')[0];
+                    tableBody.innerHTML = '';
+                    if (properties) {
+                        Object.keys(properties).forEach(key => {
+                            if (key !== 'latitude' && key !== 'longitude') { // Exclude latitude and longitude
+                                var row = document.createElement('tr');
+                                row.innerHTML = `<td>${key}</td><td><b>${properties[key]}</b></td>`; // Bold values
+                                tableBody.appendChild(row);
+                            }
+                        });
+                    } else {
+                        data.features.forEach(feature => {
+                            var properties = feature.properties;
+                            Object.keys(properties).forEach(key => {
+                                if (key !== 'latitude' && key !== 'longitude') { // Exclude latitude and longitude
+                                    var row = document.createElement('tr');
+                                    row.innerHTML = `<td>${key}</td><td><b>${properties[key]}</b></td>`; // Bold values
+                                    tableBody.appendChild(row);
+                                }
+                            });
+                        });
+                    }
+                }
+
+                // Populate the table with all the data by default
+                updateTable(null);
+
+                // Count occurrences of each crop in each state
+                const cropStateCounts = {};
+                data.features.forEach(feature => {
+                    const crop = feature.properties.Crop_Type;
+                    const state = feature.properties.State;
+                    if (!cropStateCounts[crop]) {
+                        cropStateCounts[crop] = {};
+                    }
+                    if (!cropStateCounts[crop][state]) {
+                        cropStateCounts[crop][state] = 0;
+                    }
+                    cropStateCounts[crop][state]++;
+                });
+
+                // Decent colors for the bar chart
+                const decentColors = [
+                    '#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#FF8F33',
+                    '#33FFF5', '#B833FF', '#FF3333', '#33FF9E', '#FF3388',
+                    '#FFA533', '#33FFCC', '#5733FF', '#FFD833', '#FF33E0'
+                ];
+
+                // Create bar chart data
+                const labels = Object.keys(cropStateCounts);
+                const datasets = [];
+                const statesList = Array.from(states);
+
+                statesList.forEach((state, index) => {
+                    const data = labels.map(crop => cropStateCounts[crop][state] || 0);
+                    datasets.push({
+                        label: state,
+                        data: data,
+                        backgroundColor: decentColors[index % decentColors.length],
+                        borderColor: decentColors[index % decentColors.length],
+                        borderWidth: 1
+                    });
+                });
+
+                // Create the bar chart
+                var ctx = document.getElementById('crop-bar-chart').getContext('2d');
+                var barChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: datasets
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'States',
+                                    font: {
+                                        weight: 'bold' // Make y-axis title bold
+                                    }
+                                },
+                                ticks: {
+                                    font: {
+                                        weight: 'bold' // Make y-axis labels bold
+                                    }
+                                }
+                            },
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Crops',
+                                    font: {
+                                        weight: 'bold' // Make x-axis title bold
+                                    }
+                                },
+                                ticks: {
+                                    font: {
+                                        weight: 'bold' // Make x-axis labels bold
+                                    }
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    font: {
+                                        weight: 'bold' // Make legend labels bold
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error loading Points GeoJSON:', error);
+            });
+    </script>
+</body>
+
+</html>

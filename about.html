@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional CSS for background image */
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('https://gdb.voanews.com/01630000-0aff-0242-6a38-08da7d8d7e51_w1080_h608_s.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .welcome-message {
+            text-align: center;
+            font-size: large;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px; /* Optional: Add rounded corners */
+        }
+
+        .navbar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        /* Dropdown menu */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #logo img {
+            height: 40px; /* Adjust the logo size as needed */
+        }
+
+        .navbar {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="logo">
+            <a href="index.html"><img src="https://cdn-icons-png.flaticon.com/512/2563/2563386.png" alt="Logo"></a>
+        </div>
+        <div class="navbar">
+            <a href="about.html">About</a>
+            <a href="https://iittnif.maps.arcgis.com/apps/dashboards/c9cc21eb1d0c4f63b8211e38d81b1156">Dashboard</a>
+            <a href="data.html">Data</a>
+            <a href="feedback.html">Feedback</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </header>
+
+    <div class="welcome-message">
+        <h1>About Us</h1>
+        <p>Welcome to DroughtInsight, your trusted source for comprehensive drought information and data analytics in India. Our platform is dedicated to providing real-time insights and actionable data to help individuals, communities, and decision-makers effectively understand, monitor, and respond to drought conditions across every state in India.</p>
+
+        <h1>Our Mission</h1>
+        <p>Our mission is to empower stakeholders with accurate and up-to-date information on drought-related metrics, enabling informed decision-making and proactive measures to mitigate drought impacts.</p>
+
+        <h1>What We Offer</h1>
+        <p>Real-Time Data Analysis:<br>
+            Drought Percentage: We provide detailed insights into the extent and severity of drought conditions in each state, enabling users to track drought trends over time.<br>
+            Crop Types: Our platform categorizes crop types across different regions, helping users understand agricultural diversity and vulnerabilities.<br>
+            Rainfall Metrics: Access comprehensive data on rainfall patterns and anomalies, crucial for assessing water availability and drought resilience.<br>
+            Temperature Records: Monitor temperature fluctuations and trends to gauge their impact on drought severity and agricultural productivity.<br>
+            Soil Moisture Levels: Understand soil moisture dynamics, essential for predicting agricultural outcomes and water management strategies.</p>
+    </div>
+</body>
+
+</html>

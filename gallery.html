@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>droughts</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('https://wfi-water.com/wp-content/uploads/2023/01/Depositphotos_30828375_L-1.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .welcome-message {
+            text-align: center;
+            font-size: 2.5em;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="about.html">About</a>
+        <a href="https://iittnif.maps.arcgis.com/apps/dashboards/c9cc21eb1d0c4f63b8211e38d81b1156">Dashboard</a>
+        <a href="dashboard.html">Data</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="feedback.html">Feedback</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://indiadroughtmonitor.in/">real  time <data value=""></data></a>
+        
+        <div class="dropdown">
+            <a class="dropbtn" href="#">Profile</a>
+            <div class="dropdown-content">
+                <a href="profile.html">Edit Profile</a>
+                <a href="download.html">Download</a>
+                <a href="logout.html">Logout</a>
+            </div>
+        </div>
+    </div>
+    <div class="welcome-message">
+        <h1>Welcome to DroughtInsight</h1>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

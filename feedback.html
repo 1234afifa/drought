@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback - TAMILNADU TOURISM</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-image: url('https://www.openaccessgovernment.org/wp-content/uploads/2023/04/iStock-157313406-scaled.jpg');
+            background-size: cover;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #logo img {
+            height: 40px;
+        }
+
+        .navbar {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            max-width: 500px;
+            margin-top: 80px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        input,
+        textarea {
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        button {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="logo">
+            <a href="index.html"><img src="https://cdn-icons-png.flaticon.com/512/2563/2563386.png" alt="Logo"></a>
+        </div>
+        <div class="navbar">
+            <a href="about.html">About</a>
+            <a href="https://iittnif.maps.arcgis.com/apps/dashboards/c9cc21eb1d0c4f63b8211e38d81b1156">Dashboard</a>
+            <a href="data.html">Data</a>
+            <a href="feedback.html">Feedback</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>FEEDBACK</h1>
+        <form action="https://formspree.io/f/mwpekaow" method="POST">
+            <label for="name">NAME:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">EMAIL ID:</label>
+            <input type="email" id="email" name="_replyto" required>
+
+            <label for="feedback">FEEDBACK:</label>
+            <textarea id="feedback" name="message" rows="5" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+
+</html>
